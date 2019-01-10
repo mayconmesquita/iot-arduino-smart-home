@@ -845,7 +845,7 @@ void loop(){
             client.println("<html>");
             client.println("<head>");
             client.println("  <meta charset=\"UTF-8\">");
-            client.println("  <title>Minha Casa</title>");
+            client.println("  <title>Arduino Smart Home</title>");
             client.println("  <script>");
             client.println("    function GetSwitchState(){");
             client.println("      nocache=\"&nocache=\"+Math.random()*10000000;");        
