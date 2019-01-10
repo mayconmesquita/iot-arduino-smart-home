@@ -9,7 +9,7 @@
 
 ## Contribute
 
-You can contribute to the source code in our [GitHub](https://github.com/mayconmesquita/arduino-smart-home) page.
+You can contribute to the source code in our [GitHub](https://github.com/mayconmesquita/iot-arduino-smart-home) page.
 
 ## Changelog
 
