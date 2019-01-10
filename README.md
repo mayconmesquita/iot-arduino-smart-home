@@ -5,7 +5,7 @@
 
 ## Description
 
-A residential automation project with Arduino, Ethernet Shield and Websocket (Node.JS)
+[IoT] A residential automation project with Arduino, Ethernet Shield and Websocket (Node.JS)
 
 ## Contribute
 
