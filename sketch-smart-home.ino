@@ -1,16 +1,18 @@
 /* 
-  Arduino Smart Home - Last edit: 02/12/2014
-  Maycon Mesquita
+  Arduino Smart Home
+  Project started: 02/12/2014
+  Author: Maycon Mesquita
 */
+
 #include <SPI.h>
 #include <SD.h>
 #include <Ethernet.h>
 // #include <utility/w5100.h> // Lib para reduzir delay na tentativa de conexão.
 #include <sha1.h>
-#include <WebSocketClient.h>
-#include <IRremote.h>
-#include "IRCodes.h"
-#include <EmonLib.h>
+#include <WebSocketClient.h> // Cliente de websocket em node.js
+#include <IRremote.h> // Lib para leitura de comandos infravermelho
+#include "IRCodes.h"  // Códigos IR de um Ar condicionado
+#include <EmonLib.h> // Lib para medição de uso de corrente e tensão
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  
 IPAddress ip(192, 168, 2, 50);
@@ -28,7 +30,7 @@ boolean debug_on = false; // Modo Debug
 boolean show_headers = false; // Mostrar headers http do cliente web na Serial
 boolean net = false; // Estado do web socket
 boolean is_local = false; // Tipo de conexão Local (Webserver) ou Remota (Websocket)
-const char* ws_ip = "192.157.238.204"; // Ip do Websocket
+const char* ws_ip = "192.157.238.204"; // Ip remoto do WebSocket
 #define ws_port 80
 
 unsigned long previousMillis  = 0;  // Leitura de temperatura (milis anterior)
