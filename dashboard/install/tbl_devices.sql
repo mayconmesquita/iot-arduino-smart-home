@@ -1,0 +1,23 @@
+﻿CREATE TABLE tbl_devices(
+	`device_id` INT(7) NOT NULL auto_increment,
+	`device_order` INT(7) NOT NULL,
+	`device_type` INT(7) NOT NULL,
+	`device_name` VARCHAR(128) NOT NULL,
+	`device_icon_src` VARCHAR(128) NOT NULL,
+	`device_icon_width` VARCHAR(7) NOT NULL,
+	`device_icon_height` VARCHAR(7) NOT NULL,
+	`device_cmd_offset` INT(2),
+	`device_cmd_toggle` VARCHAR(128) NOT NULL,
+	`device_cmd_on` VARCHAR(128) NOT NULL,
+	`device_cmd_off` VARCHAR(128) NOT NULL,
+	`device_voice_on` TEXT,
+	`device_voice_off` TEXT,
+	`device_pos_x` INT(7) NOT NULL,
+	`device_pos_y` INT(7) NOT NULL,
+	`device_last_window_width` INT(7) NOT NULL,
+	`device_last_window_height` INT(7) NOT NULL,
+	`device_ground_id` INT(7) NOT NULL,
+	`device_building_id` INT(7) NOT NULL,
+	`device_status` TINYINT(1) NOT NULL DEFAULT '1',
+	PRIMARY KEY (device_id)
+);

@@ -1,0 +1,4 @@
+Ligar mais: Shadows/Highlights - Shadows: 0%, Highlights: 100%
+
+Desligar: Brightness/Contrast - Brig: -150, Cont: 100
+		  Brightness/Contrast - Brig: -10, Cont: 0
