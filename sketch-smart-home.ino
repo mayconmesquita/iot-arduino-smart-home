@@ -15,7 +15,7 @@
 #include <EmonLib.h> // Lib para medição de uso de corrente e tensão
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  
-IPAddress ip(192, 168, 2, 50);
+IPAddress ip(192, 168, 2, 50); // Coloque um IP local para o Arduino aqui
 EthernetServer server(80);
 
 EnergyMonitor emon1; // Inicia interface para ler corrente e tensão elétrica
