@@ -18,7 +18,7 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(192, 168, 2, 50);
 EthernetServer server(80);
 
-EnergyMonitor emon1;
+EnergyMonitor emon1; // Inicia interface para ler corrente e tensão elétrica
 
 String http_req; // Guarda a requisição HTTP do cliente via webserver
 const char* msgResponse = ""; // String de Response
