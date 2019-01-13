@@ -30,7 +30,7 @@ boolean debug_on = false; // Modo Debug
 boolean show_headers = false; // Mostrar headers http do cliente web na Serial
 boolean net = false; // Estado do web socket
 boolean is_local = false; // Tipo de conexão Local (Webserver) ou Remota (Websocket)
-const char* ws_ip = "192.157.238.204"; // Ip remoto do WebSocket
+const char* ws_ip = "set_your_ip_here"; // Ip remoto do WebSocket
 #define ws_port 80
 
 unsigned long previousMillis  = 0;  // Leitura de temperatura (milis anterior)
@@ -301,7 +301,7 @@ double irms1; // Sensor de Corrente 1
 double consumo1;
 
 
-void corrente_calc(){
+void corrente_calc(){ // Função para cálculo de corrente
   irms1  = emon1.calcIrms(1480); // Calcular IRMS 1
   
   char consumo1_b[20];
