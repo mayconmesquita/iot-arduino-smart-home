@@ -8,4 +8,4 @@ CREATE TABLE configs(
 );
 
 INSERT INTO `configs` (`id`,`title`,`ip`,`porta`,`tempo_receber`,`url`) VALUES 
- (1,'Painel de Controle','192.157.238.203','8080','8000','');
+ (1,'Smart Home','192.168.1.50','8080','8000','');
