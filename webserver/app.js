@@ -1,35 +1,41 @@
-function getDateTime() {
-    var date = new Date();
+const getServerTime = () => {
+    let date = new Date();
 
-    var hour = date.getHours();
-    hour = (hour < 10 ? "0" : "") + hour;
+    let hour = date.getHours();
+    hour = (hour < 10 ? '0' : "") + hour;
 
-    var min  = date.getMinutes();
-    min = (min < 10 ? "0" : "") + min;
+    let min  = date.getMinutes();
+    min = (min < 10 ? '0' : "") + min;
 
-    var sec  = date.getSeconds();
-    sec = (sec < 10 ? "0" : "") + sec;
+    let sec  = date.getSeconds();
+    sec = (sec < 10 ? '0' : "") + sec;
 
-    var year = date.getFullYear();
+    let year = date.getFullYear();
 
-    var month = date.getMonth() + 1;
-    month = (month < 10 ? "0" : "") + month;
+    let month = date.getMonth() + 1;
+    month = (month < 10 ? '0' : "") + month;
 
-    var day  = date.getDate();
-    day = (day < 10 ? "0" : "") + day;
+    let day  = date.getDate();
+    day = (day < 10 ? '0' : '') + day;
 
-    return hour + ":" + min + ":" + sec + ":" + day + ":" + month + ":" + year;
-}
+    return hour + ':' + min + ':' + sec + ':' + day + ':' + month + ':' + year;
+};
 
-var WebSocketServer = require('ws').Server, 
-wss = new WebSocketServer({ port: 80, host: "put_your_vps_ip_here" });
+let server_ip = 'put_your_vps_IP_here';
 
-wss.on('connection', function(ws) {
-    ws.on('message', function(message) {
-        if(message == 'time') ws.send(getDateTime());
+let WebSocketServer = require('ws').Server, 
+wss = new WebSocketServer({ port: 80, host: "server_ip" });
 
-        console.log('%s', message);
+wss.on('connection', (ws) => {
+    ws.on('message', (message) => {
+        if (message == 'server_time') ws.send(getServerTime());
+
+        console.log('%s', message); // debug
+        
         ws.send(message);
-        for(var i in wss.clients) wss.clients[i].send(message);
+        
+        for (var i in wss.clients) {
+            wss.clients[i].send(message);
+        }
     });
 });
