@@ -1,26 +1,26 @@
 {
-  "name": "arduino-smart-home",
-  "version": "1.0.0",
-  "description": "A websocket app written in nodejs with WS package.",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "ws": "^6.1.2"
-  },
-  "engines": {
-    "node": "10.15.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "hhttps://github.com/mayconmesquita/iot-arduino-smart-home"
-  },
-  "keywords": [
-    "arduino",
-    "smart",
-    "home"
-  ],
-  "author": "Maycon Mesquita",
-  "license": "GPLv2"
+	"name": "iot-arduino-smart-home",
+	"version": "1.0.0",
+	"description": "A websocket app written in nodejs with WS package.",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"ws": "^6.1.2"
+	},
+	"engines": {
+		"node": "10.15.0"
+	},
+		"repository": {
+		"type": "git",
+		"url": "hhttps://github.com/mayconmesquita/iot-arduino-smart-home"
+	},
+	"keywords": [
+		"arduino",
+		"smart",
+		"home"
+	],
+	"author": "Maycon Mesquita",
+	"license": "GPLv2"
 }

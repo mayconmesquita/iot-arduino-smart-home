@@ -21,10 +21,8 @@ const getServerTime = () => {
     return hour + ':' + min + ':' + sec + ':' + day + ':' + month + ':' + year;
 };
 
-let server_ip = 'put_your_vps_IP_here';
-
-let WebSocketServer = require('ws').Server, 
-wss = new WebSocketServer({ port: 80, host: "server_ip" });
+let WebSocketServer = require('ws').Server;
+let wss = new WebSocketServer({ port: 8080, host: '127.0.0.1' });
 
 wss.on('connection', (ws) => {
     ws.on('message', (message) => {
