@@ -1,9 +1,4 @@
 <?php
-/* 
- * Portuguese Language file
- * Written by Ryan Gehrig
- * Edited by Maycon Costa
-*/
 
 $lang = array();
 

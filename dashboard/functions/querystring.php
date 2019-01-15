@@ -1,5 +1,5 @@
 <?php
-	function QueryString(&$get, $inicio, $pasta){
+	function QueryString(&$get, $inicio, $pasta) {
 		$get         = (isset($get)) ? strip_tags(trim($get)) : '';
 		$regex       = '/(http|www|.php|.asp|.html|.htm|.js|.net|.gif|.png|.jpg|.exe)/i';
 		$paginaHome  = "{$pasta}/{$inicio}.php";

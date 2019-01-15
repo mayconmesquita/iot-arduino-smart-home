@@ -1,7 +1,8 @@
 <?php
-	function _title(){
+	function _title() {
 		$p = (isset($_GET['p'])) ? $_GET['p'] : 'supervisorio';
-		switch($p){
+
+		switch ($p) {
 			case 'supervisorio' : $title = 'Supervisório'; break;
 			case 'tasks' : $title = 'Tarefas'; break;
 			case 'vigilancia' : $title = 'Vigilância'; break;
@@ -14,15 +15,17 @@
 			case 'usuarios' : $title = 'Usuários'; break;
 			case 'novo_usuario' : $title = 'Novo usuário'; break;
 			case 'editar_usuario' : $title = 'Editar Usuário'; break;
-			default		: $title = 'Supervisório'; break;
+			default	: $title = 'Supervisório'; break;
 		}
+
 		return $title;
 	}
-		
-	function _menu_ativo(){
+
+	function _menu_ativo() {
 		$p = (isset($_GET['p'])) ? $_GET['p'] : 'supervisorio';
-		$p = str_replace("/", "", $p);
-		switch($p){
+		$p = str_replace('/', '', $p);
+
+		switch ($p) {
 			case 'supervisorio' : $menu_ativo = 1; break;
 			case 'tasks' : $menu_ativo = 2; break;
 			case 'devices' : $menu_ativo = 3; break;
@@ -35,8 +38,9 @@
 			case 'usuarios' : $menu_ativo = 7; break;	
 			case 'novo_usuario' : $menu_ativo = 7; break;
 			case 'editar_usuario' : $menu_ativo = 7; break;
-			default		: $menu_ativo = 1; break;;
+			default	: $menu_ativo = 1; break;;
 		}
+
 		return $menu_ativo;
 	}		
 ?>

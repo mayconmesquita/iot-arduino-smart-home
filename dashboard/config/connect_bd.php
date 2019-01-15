@@ -1,8 +1,8 @@
 <?php
 	$servidor	=	'localhost';
-	$basedados	=	'database_name';
-	$utilizador	=	'username';
-	$chavepass	=	'password';
+	$basedados	=	'basedados';
+	$utilizador	=	'utilizador';
+	$chavepass	=	'chavepass';
 	
 	$connect = mysql_connect($servidor, $utilizador, $chavepass);
 	if (!$connect) die('Estamos em manutenção, tente mais tarde.');

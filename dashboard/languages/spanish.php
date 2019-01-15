@@ -1,14 +1,6 @@
 <?php
-/*
- * GamePanelX
- * 
- * To translate to another language, copy this to a new PHP file named "yourlanguage.php", and translate all the english words on the right (to the right of the = sign).
- * Try and keep the structure of the file the same, and make sure you close all '';
- * 
-*/
-$lang = array();
 
-########################################################################
+$lang = array();
 
 // Common Words/Phrases
 $lang['yes']                = 'Si';

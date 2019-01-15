@@ -1,16 +1,20 @@
 <?php
 	error_reporting(0);
 	session_start();
-	if($_SESSION['permissao_user'] >= 1){
-?>	
+
+	if ($_SESSION['permissao_user'] < 1) die;
+?>
+
 <script type="text/javascript">
 	var digital = new Date();
-	digital.setHours(<?php echo date("H,i,s"); date_default_timezone_set('America/Fortaleza'); ?>);
+
+	digital.setHours(<?php echo date('H, i, s'); date_default_timezone_set('America/Sao_Paulo'); ?>);
 
 	function clock() {
 		var hours = digital.getHours();
 		var minutes = digital.getMinutes();
 		var seconds = digital.getSeconds();
+
 		digital.setSeconds(seconds + 1);
 
 		if (hours   <= 10) hours   = "0" + hours;
@@ -24,4 +28,3 @@
 
 	window.onload = clock;
 </script>
-<?php } ?>

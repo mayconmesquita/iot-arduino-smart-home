@@ -2,7 +2,8 @@
 	header("Content-Type: application/json; charset=utf-8'");
 	header("access-control-allow-origin: *");
 	session_start();
-	if($_SESSION['permissao_user'] >= 1){
+
+	if ($_SESSION['permissao_user'] >= 1) {
 
 		include('../config/connect_bd.php');
 
@@ -10,7 +11,7 @@
 		$sql = "SELECT * FROM tbl_devices ORDER BY device_id ASC";
 		$resultado = mysql_query($sql) or die;
 
-		function is_valid_callback($subject){
+		function is_valid_callback($subject) {
 			$identifier_syntax = '/^[$_\p{L}][$_\p{L}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{200C}\x{200D}]*+$/u';
 
 			$reserved_words = array('break', 'do', 'instanceof', 'typeof', 'case',
@@ -21,12 +22,12 @@
 									'private', 'public', 'yield', 'interface', 'package', 'protected', 
 									'static', 'null', 'true', 'false');
 
-		    return preg_match($identifier_syntax, $subject) && ! in_array(strtolower($subject), $reserved_words);
+		    return preg_match($identifier_syntax, $subject) && !in_array(strtolower($subject), $reserved_words);
 		}
 
 		$data = array();
 
-		while ($linha = mysql_fetch_array($resultado, MYSQL_ASSOC)){
+		while ($linha = mysql_fetch_array($resultado, MYSQL_ASSOC)) {
 				 if($linha['device_type'] == 1)  $linha['device_type'] = 'Lâmpada';
 			else if($linha['device_type'] == 2)  $linha['device_type'] = 'Porta';
 			else if($linha['device_type'] == 3)  $linha['device_type'] = 'Ar-condicionado';
@@ -48,5 +49,4 @@
 		if(!isset($_GET['callback'])) exit($json);
 		if(is_valid_callback($_GET['callback'])) exit($_GET['callback'].$json);
 	}
-	else
 ?>
