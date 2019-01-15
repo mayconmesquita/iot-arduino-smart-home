@@ -39,20 +39,22 @@
 
 		if ($subdomain[0] == 'm') {
 			$_SESSION['mobile'] = true;
-			if($_GET['app'] == 'android') $_SESSION['app'] = 'android';
-			if($_GET['app'] == 'desktop') $_SESSION['app'] = 'desktop';
-			if($_GET['app'] == 'ios')	  $_SESSION['app'] = 'ios';
-			if($_GET['app'] == 'winphone')  $_SESSION['app'] = 'winphone';
+
+			if ($_GET['app'] == 'android') $_SESSION['app'] = 'android';
+			else if ($_GET['app'] == 'ios')	   $_SESSION['app'] = 'ios';
+			else if ($_GET['app'] == 'desktop') $_SESSION['app'] = 'desktop';
+			else $_SESSION['app'] = 'android'; // android is the default theme
+			
 		} else $_SESSION['mobile'] = false;
 
-		$_SESSION['id_user'] 			= $pegar['id_user'];
-		$_SESSION['nome_user'] 			= $pegar['nome_user'];
-		$_SESSION['email_user'] 		= $pegar['email_user'];
-		$_SESSION['senha_user'] 		= $pegar['senha_user'];
-		$_SESSION['permissao_user'] 	= $pegar['permissao_user'];
-		$_SESSION['status_user'] 		= $pegar['status_user'];
-		$_SESSION['sys_lang']	 		= $pegar['language_user'];
-		$_SESSION['kick'] 				= '0';
+		$_SESSION['id_user'] 		= $pegar['id_user'];
+		$_SESSION['nome_user'] 		= $pegar['nome_user'];
+		$_SESSION['email_user'] 	= $pegar['email_user'];
+		$_SESSION['senha_user'] 	= $pegar['senha_user'];
+		$_SESSION['permissao_user'] = $pegar['permissao_user'];
+		$_SESSION['status_user'] 	= $pegar['status_user'];
+		$_SESSION['sys_lang']	 	= $pegar['language_user'];
+		$_SESSION['kick'] 			= '0';
 		
 		$sql = "SELECT * FROM configs WHERE id = " . (int)1;
 		$resultado = mysql_query($sql) or die;

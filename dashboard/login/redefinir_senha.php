@@ -22,9 +22,8 @@
 		} else {
 			$nome_user = $pegar['nome_user']; //Nome referente ao e-mail
 			$senha_antiga = $pegar['senha_user']; //Senha antiga referente ao e-mail
-	
-			// Define uma nova senha
 			
+			/*------------- GENERATE PASSWORD ----------------*/
 			/*-------------- SALT GENERATOR ------------------*/
 			$tamanho   = 23;
 			$possible  = '0123456789'; // numbers
@@ -126,6 +125,7 @@
 		padding: 0pt 5px;
 		cursor: default;
 	}
+
 	#redefinir_senha {
 		padding: 10px;
 	}
@@ -171,9 +171,11 @@
 		text-shadow: 0pt 0pt 5px #555555;
 		float: left;
 	}
+
 	form #bt_submit:hover {
 		background-color: #c72126;
 	}
+
 	#msg_resposta {
 		font-size: 16px;
 		height: 20px;
@@ -181,11 +183,13 @@
 		padding: 10px;
 		margin: 10px 10px 10px 10px;
 	}
+
 	#msg_fail {
 		background: url(../images/cross.png) no-repeat left bottom;
 		color: #f02d2d;
 		text-indent: 22px;
 	}
+
 	#msg_ok {
 		background: url(../images/tick.png) no-repeat left bottom;
 		color: #007716;
@@ -193,6 +197,7 @@
 	}
 </style>
 </head>
+
 <body>
 	<fieldset>
 		<legend>Informe seu e-mail para receber sua nova senha de acesso</legend>

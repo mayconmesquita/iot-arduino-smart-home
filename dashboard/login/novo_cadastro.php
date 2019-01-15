@@ -1,16 +1,20 @@
 <?php
 	error_reporting(0);
 	session_start();
-	if($_SESSION['permissao_user'] >= 5){
-	if(isset($_POST['cadastrar'])){
-		$nome = strip_tags(trim($_POST['nome_user']));
+
+	if ($_SESSION['permissao_user'] < 5) {
+		die('Você não tem permissão para acessar esta página.');
+	}
+
+	if (isset($_POST['cadastrar'])) {
+		$nome  = strip_tags(trim($_POST['nome_user']));
 		$email = strip_tags(trim(strtolower($_POST['email_user'])));
 		$senha = strip_tags(trim($_POST['senha_user']));
 		$repetir_senha = strip_tags(trim($_POST['repetir_senha_user']));
 		
-		//Encontrar e-mail no banco de dados
 		include('../config/connect_bd.php');
 		mysql_select_db($basedados, $connect);
+
 		$sql = "SELECT * FROM users WHERE email_user = '$email'";
 		$resultado = mysql_query($sql, $connect) or die('Nao foi possivel conectar...');
 		$pegar = mysql_fetch_array($resultado);
@@ -18,37 +22,31 @@
 		$Verifica = mysql_query("SELECT * FROM users WHERE email_user = '$email'");
 		$Resultado = mysql_num_rows($Verifica);
 		
-		if($nome == ''){
-			$msg_resposta='Digite o seu nome!';
+		if ($nome == '') {
+			$msg_resposta = 'Digite o seu nome!';
 			$error = 1;
-		}	
-		else if($email == ''){
-			$msg_resposta='Digite o seu e-mail!';
+		} else if ($email == '') {
+			$msg_resposta = 'Digite o seu e-mail!';
 			$error = 1;
-		}
-		else if (substr_count($email,"@") == 0 || substr_count($email,".") == 0 || strlen($email) < 5){
-			$msg_resposta='Digite um e-mail válido!';
+		} else if (substr_count($email, "@") == 0 || substr_count($email, ".") == 0 || strlen($email) < 5) {
+			$msg_resposta = 'Digite um e-mail válido!';
 			$error = 1;
-		}
-		else if($Resultado > 0){
-			$msg_resposta='O e-mail fornecido já existe em nosso sistema!';
+		} else if ($Resultado > 0) {
+			$msg_resposta = 'O e-mail fornecido já existe em nosso sistema!';
 			$error = 1;
-		}
-		else if($senha == ''){
-			$msg_resposta='Digite a sua senha!';
+		} else if ($senha == '') {
+			$msg_resposta = 'Digite a sua senha!';
 			$error = 1;
-		}
-		else if($repetir_senha == ''){
-			$msg_resposta='Digite a sua senha novamente!';
+		} else if ($repetir_senha == '') {
+			$msg_resposta = 'Digite a sua senha novamente!';
 			$error = 1;
-		}
-		else if($senha !== $repetir_senha){
-			$msg_resposta='Suas senhas não conferem!';
+		} else if ($senha !== $repetir_senha) {
+			$msg_resposta = 'Suas senhas não conferem!';
 			$error = 1;
-		}
-		else{
-			////////////Gera um Salt///////////////
-			$tamanho = 23;
+		} else {
+			/*------------- GENERATE PASSWORD ----------------*/
+			/*-------------- SALT GENERATOR ------------------*/
+			$tamanho   = 23;
 			$possible  = '0123456789'; // numbers
 			$possible .= 'abcdefghijklmnopqrstuvwxyz'; // lowcase char
 			$possible .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // uppercase char
@@ -58,23 +56,22 @@
 			mt_srand((double) microtime() * 1000000);
 
 			$tp = strlen($possible); // total possible chars
-			while (strlen($salt) < $tamanho){
+
+			while (strlen($salt) < $tamanho) {
 				$id       = rand() % $tp;
 				$car      = $possible[$id];
-				$salt     .= $car;
+				$salt    .= $car;
 			}
+
 			$salt = sha1($salt);
-			////////////////////////////////////
-			
-			
+			/*------------------------------------------*/
+
 			// Cria um hash
 			$hash = sha1($senha . $salt);
 
 			// Encripta esse hash 1000 vezes
 			for ($i = 0; $i < 1000; $i++) {
-			
 				$hash = hash("whirlpool", $hash);
-				
 			}
 			
 			$sql = "INSERT INTO users(
@@ -87,27 +84,25 @@
 				hora_cadastro,
 				status_user
 			) VALUES (
-				'".mysql_real_escape_string($nome)."',
-				'".mysql_real_escape_string($email)."',
-				'".mysql_real_escape_string(trim(strip_tags($hash)))."',
-				'".mysql_real_escape_string(1)."',
-				'".mysql_real_escape_string(trim(strip_tags($salt)))."',
+				'" . mysql_real_escape_string($nome) . "',
+				'" . mysql_real_escape_string($email) . "',
+				'" . mysql_real_escape_string(trim(strip_tags($hash))) . "',
+				'" . mysql_real_escape_string(1) . "',
+				'" . mysql_real_escape_string(trim(strip_tags($salt))) . "',
 				NOW(),
 				NOW(),
-				'".mysql_real_escape_string(2)."'
+				'" . mysql_real_escape_string(2) . "'
 			)";
-			
+
 			$resultado = mysql_query($sql, $connect) or die('Nao foi possivel conectar...');
-			
+
 			$nome = '';
 			$email = '';
 			$senha = '';
 			$repetir_senha = '';
 			$error = 0;
 			$msg_resposta = 'Cadastro realizado com sucesso!';
-			
 		}
-		
 	}
 ?>
 
@@ -130,24 +125,24 @@
 		margin: 0pt;
 	}
 	
-	fieldset{
+	fieldset {
 		border: 1px solid #cccccc;
 		padding: 15px 0pt;
 		margin: 10px 10px 10px 10px;
 	}
 	
-	legend{
+	legend {
 		color: #df0b0b;
 		font-size: 18px;
 		font-weight: body;
 		padding: 0pt 5px;
 		cursor: default;
 	}
-	#novo_cadastro{
+	#novo_cadastro {
 		padding: 10px;
 	}
 	
-	#novo_cadastro label{
+	#novo_cadastro label {
 		font-size: 15px;
 		color: #1a1a1a;
 		padding: 0pt;
@@ -155,7 +150,7 @@
 		cursor: pointer;
 	}
 	
-	form input{
+	form input {
 		width: 360px;
 		height: 20px;
 		color: #555555;
@@ -166,12 +161,12 @@
 		float: left;
 	}
 
-	form input:focus{
+	form input:focus {
 		background-color: #ffeeee;
 		border: 1px solid #ff3333;	
 	}
 	
-	form #bt_submit{
+	form #bt_submit {
 		text-decoration: none;
 		font-weight: bold;
 		font-family: "trebuchet ms","Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
@@ -187,28 +182,33 @@
 		text-shadow: 0pt 0pt 5px #555555;
 		float: left;
 	}
-	form #bt_submit:hover{
+
+	form #bt_submit:hover {
 		background-color: #c72126;
 	}
-	#msg_resposta{
+
+	#msg_resposta {
 		font-size: 16px;
 		height: 20px;
 		border: 1px solid #cccccc;
 		padding: 10px;
 		margin: 10px 10px 10px 10px;
 	}
-	#msg_fail{
+
+	#msg_fail {
 		background: url(../images/cross.png) no-repeat left bottom;
 		color: #f02d2d;
 		text-indent: 22px;
 	}
-	#msg_ok{
+
+	#msg_ok {
 		background: url(../images/tick.png) no-repeat left bottom;
 		color: #007716;
 		text-indent: 22px;
 	}
 </style>
 </head>
+
 <body>
 	<fieldset>
 		<legend>Informe seus dados para efetuar o seu cadastro</legend>
@@ -217,19 +217,19 @@
 				<tbody>
 					<tr>
 						<td width="170px" height="50px"><label for="nome" class="required">Nome:</label></td>
-						<td width="300px"><input type="text" name="nome_user" id="nome" value="<?php if(isset($nome)) echo $nome ?>" maxlength="50" /></td>
+						<td width="300px"><input type="text" name="nome_user" id="nome" value="<?php if(isset($nome)) echo $nome; ?>" maxlength="50" /></td>
 					</tr>	
 					<tr>
 						<td width="170px" height="50px"><label for="email" class="required">E-mail:</label></td>
-						<td><input type="text" name="email_user" id="email" value="<?php if(isset($email)) echo $email ?>" maxlength="50" /></td>
+						<td><input type="text" name="email_user" id="email" value="<?php if(isset($email)) echo $email; ?>" maxlength="50" /></td>
 					</tr>
 					<tr>
 						<td width="170px" height="50px"><label for="senha" class="required">Senha:</label></td>
-						<td><input type="password" name="senha_user" id="senha" value="<?php if(isset($senha)) echo $senha ?>" maxlength="50" /></td>
+						<td><input type="password" name="senha_user" id="senha" value="<?php if(isset($senha)) echo $senha; ?>" maxlength="50" /></td>
 					</tr>
 					</tr>
 						<td width="170px" height="50px"><label for="repetir_senha" class="required">Repetir Senha:</label></td>
-						<td><input type="password" name="repetir_senha_user" id="repetir_senha" value="<?php if(isset($repetir_senha)) echo $repetir_senha ?>" maxlength="50" /></td>
+						<td><input type="password" name="repetir_senha_user" id="repetir_senha" value="<?php if(isset($repetir_senha)) echo $repetir_senha; ?>" maxlength="50" /></td>
 					</tr align="right">
 						
 						</td><td width="170px" height="80px"><input type="submit" name="cadastrar" id="bt_submit" value="Efetuar Cadastro" /></td>
@@ -246,4 +246,3 @@
 	</div>
 </body>
 </html>
-<?php } ?>
