@@ -1,6 +1,7 @@
 <?php
 	error_reporting(0);
 	session_start();
+
 	include('../config/connect_bd.php');
 	mysql_select_db($basedados, $connect);
 	
@@ -13,6 +14,7 @@
 	
 	$salt = $linha['link_user'];
 	$senha_user = sha1($senha_usuario . $salt);
+
 	for ($i = 0; $i < 1000; $i++) {
 		$senha_user = hash("whirlpool", $senha_user);
 	}
@@ -22,29 +24,26 @@
 	$pegar = mysql_fetch_array($resultado);
 	$row = mysql_num_rows($resultado);
 	
-	if(!empty($email_user) && !empty($senha_usuario) && $row == 0){ 
+	if (!empty($email_user) && !empty($senha_usuario) && $row == 0) { 
 		$_SESSION['kick'] = '1';
 		echo 'false_1';
-	}
-	else if($pegar['status_user'] == 2){
+	} else if ($pegar['status_user'] == 2) {
 		$_SESSION['kick'] = '1';
 		echo 'false_2';
-	}
-	else if(empty($email_user) || empty($senha_usuario)){
+	} else if (empty($email_user) || empty($senha_usuario)) {
 		$_SESSION['kick'] = '1';
 		echo 'false_3';
-	}
-	else{
+	} else {
 
 		$subdomain = explode('.', $_SERVER['HTTP_HOST']);
-		if($subdomain[0] == 'm'){
+
+		if ($subdomain[0] == 'm') {
 			$_SESSION['mobile'] = true;
 			if($_GET['app'] == 'android') $_SESSION['app'] = 'android';
 			if($_GET['app'] == 'desktop') $_SESSION['app'] = 'desktop';
 			if($_GET['app'] == 'ios')	  $_SESSION['app'] = 'ios';
 			if($_GET['app'] == 'winphone')  $_SESSION['app'] = 'winphone';
-		}
-		else $_SESSION['mobile'] = false;
+		} else $_SESSION['mobile'] = false;
 
 		$_SESSION['id_user'] 			= $pegar['id_user'];
 		$_SESSION['nome_user'] 			= $pegar['nome_user'];
@@ -55,7 +54,7 @@
 		$_SESSION['sys_lang']	 		= $pegar['language_user'];
 		$_SESSION['kick'] 				= '0';
 		
-		$sql = "SELECT * FROM configs WHERE id = ".(int)1;
+		$sql = "SELECT * FROM configs WHERE id = " . (int)1;
 		$resultado = mysql_query($sql) or die;
 		$configs = mysql_fetch_array($resultado, MYSQL_ASSOC);
 		
