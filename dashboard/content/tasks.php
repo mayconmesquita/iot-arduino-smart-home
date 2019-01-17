@@ -1,12 +1,12 @@
 <?php
-	if($_SESSION['permissao_user'] >= 3){
-		if(!empty($_POST['isAjax']) && $_POST['isAjax'] == 2 && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && !empty($_POST)){
+	if ($_SESSION['permissao_user'] >= 3) {
+		if (!empty($_POST['isAjax']) && $_POST['isAjax'] == 2 && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && !empty($_POST)){
 
 			$_POST['task_date'] = (isset($_POST['task_date'])) ? $_POST['task_date'] : '';
 
-			if(isset($_POST['moduleName']) && $_POST['moduleName'] == 'tasks'){
-				if(isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'delete'){
-					if(isset($_POST['id']) && $_POST['id'] > 0){
+			if (isset($_POST['moduleName']) && $_POST['moduleName'] == 'tasks'){
+				if (isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'delete'){
+					if (isset($_POST['id']) && $_POST['id'] > 0){
 						$sql = "DELETE FROM tbl_tasks WHERE task_id = ".(int)$_POST['id'];
 						$resultado = mysql_query($sql) or die;
 
@@ -14,8 +14,8 @@
 						else echo json_encode(array('status' => 'error','message'=> 'Erro ao excluir tarefa.'));
 					}
 				}
-				else if(isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'select'){
-					if(isset($_POST['id']) && $_POST['id'] > 0){
+				else if (isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'select'){
+					if (isset($_POST['id']) && $_POST['id'] > 0){
 						$sql = "SELECT * FROM tbl_tasks WHERE task_id = ".(int)$_POST['id'];
 						$resultado = mysql_query($sql) or die ('Estamos em manutenção, tente mais tarde [1.1].');
 						$linha = mysql_fetch_array($resultado, MYSQL_ASSOC);
@@ -24,7 +24,7 @@
 						else echo json_encode(array('status' => 'error','message'=> 'Erro ao listar tarefa.'));
 					}
 				} 
-				else if(isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'edit'){
+				else if (isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'edit'){
 					if(empty($_POST['id']) || $_POST['id'] <= 0)
 						echo json_encode(array('status' => 'error','message'=> 'Esta tarefa não existe mais.'));
 					else if(empty($_POST['task_device_id']))
@@ -55,7 +55,7 @@
 						else echo json_encode(array('status' => 'error','message'=> 'Erro ao editar tarefa.'));
 					}
 				} 
-				else if(isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'create'){
+				else if (isset($_POST['moduleAction']) && $_POST['moduleAction'] == 'create'){
 					if(empty($_POST['task_device_id']))
 						echo json_encode(array('status' => 'error','message'=> 'Informe o dipositivo da tarefa.'));
 					else if(empty($_POST['task_time']))
