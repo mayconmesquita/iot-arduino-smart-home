@@ -7,8 +7,9 @@
 	require(DOCROOT.'/functions/querystring.php');
 	require(DOCROOT.'/functions/querystring-metatag.php');
 
-	if (file_exists('install.php')) {
-		echo'<meta charset="utf-8">'; die($lang['del_install']);
+	if (file_exists('install.php')) { // First remove the install files.
+		echo'<meta charset="utf-8">';
+		die($lang['del_install']);
 	}
 
 	$sub 		= (isset($_REQUEST['sub'])) ? $_REQUEST['sub'] : '';
