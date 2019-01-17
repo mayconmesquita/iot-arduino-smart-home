@@ -1,7 +1,8 @@
 <?php
 	error_reporting(0);
 	session_start();
-	if($_SESSION['permissao_user'] >= 5){
+
+	if($_SESSION['permissao_user'] >= 5) {
 
 	if(isset($_SESSION['status'])) $status = $_SESSION['status']; else $status = '';
 	include('config/connect_bd.php');
