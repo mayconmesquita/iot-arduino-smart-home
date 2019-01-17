@@ -1,7 +1,7 @@
 <?php
-	if($_SESSION['permissao_user'] >= 5){
-		if(!empty($_POST['isAjax']) && $_POST['isAjax'] == 2 && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && !empty($_POST)){
-			if(empty($_POST['title']))
+	if ($_SESSION['permissao_user'] >= 5){
+		if (!empty($_POST['isAjax']) && $_POST['isAjax'] == 2 && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' && !empty($_POST)){
+			if (empty($_POST['title']))
 				echo json_encode(array('status' => 'error','message'=> 'Título do painel não pode ficar em branco.'));
 			else if(empty($_POST['url']))
 				echo json_encode(array('status' => 'error','message'=> 'URL do painel não pode ficar em branco.'));
