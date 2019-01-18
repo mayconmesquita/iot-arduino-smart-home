@@ -9,9 +9,9 @@ $lang['active']             = 'Ativo';
 $lang['inactive']           = 'Inativo';
 $lang['setup']              = 'Setup';
 $lang['settings']           = 'Configurações';
-$lang['language']           = 'Linguagem';
+$lang['language']           = 'Idioma';
 $lang['default_language']   = 'Idioma padrão';
-$lang['email_address']      = 'Endereço de e-mail';
+$lang['email_address']      = 'E-mail';
 $lang['company']            = 'Empresa';
 $lang['theme']              = 'Tema';
 $lang['save']               = 'Salvar';
@@ -45,7 +45,7 @@ $lang['server']             = 'Servidor';
 $lang['username']           = 'Nome de usuário';
 $lang['password']           = 'Senha';
 $lang['newpassword']        = 'Nova senha';
-$lang['newpassword_conf']   = '<b>Nova senha</b> (confirmar)';
+$lang['newpassword_conf']   = 'Confirmar senha';
 $lang['chpassword']         = 'Alterar senha';
 $lang['cur_password']       = 'Senha atual';
 $lang['network']            = 'Rede';
@@ -87,6 +87,6 @@ $lang['logout']             = 'Sair';
 
 //Extra words
 $lang['account']          	= 'Conta';
-$lang['menu']          		= 'Menu';
+$lang['menu']          		  = 'Menu';
 
 ?>
